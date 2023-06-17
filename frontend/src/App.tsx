@@ -1,6 +1,6 @@
-import { DashboardPage } from "pages/DashboardPage";
-import { SettingsPage } from "pages/SettingsPage";
-import { HomePage } from "pages/HomePage";
+import { DashboardScreen } from "screens/DashboardScreen";
+import { SettingsScreen } from "screens/SettingsScreen";
+import { HomeScreen } from "screens/HomeScreen";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -9,9 +9,9 @@ function App() {
     <div className="min-h-screen">
       {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/settings" element={<SettingsScreen />} />
+        <Route path="/dashboard" element={<DashboardScreen />} />
       </Routes>
       {/* <Footer /> */}
     </div>
