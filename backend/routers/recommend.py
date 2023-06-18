@@ -1,7 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
 
-from models.enum import TranslationLangEnum
-
 import services.openai as openai_services
 
 router = APIRouter(prefix="/recommend")

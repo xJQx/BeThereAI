@@ -1,36 +1,32 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from fastapi import APIRouter, UploadFile, HTTPException
+from fastapi.responses import FileResponse
+import os
 
-from database import get_db
-
-# import app.services.prompt as prompt_services
-# import app.schemas.prompt as prompt_schemas
+import services.hume as humes_services
 
 router = APIRouter(prefix="/photo")
 
-# @router.get('/{prompt_id}', response_model=prompt_schemas.Prompt)
-# async def get_prompt_by_id(prompt_id: str, db: Session = Depends(get_db)):
-#     prompt = prompt_services.get_prompt_by_id(db, prompt_id=prompt_id)
-#     if prompt is None:
-#         raise HTTPException(status_code=404, detail="Prompt id not found!")
-#     return prompt
 
-# @router.get('/user/{user_id}', response_model=list[prompt_schemas.Prompt])
-# async def get_prompts_by_user_id(user_id: str, db: Session = Depends(get_db)):
-#     prompts = prompt_services.get_prompts_by_user_id(db, user_id=user_id)
-#     if prompts is None:
-#         raise HTTPException(status_code=404, detail="User not found!")
-#     return prompts
+@router.post('/upload')
+async def upload_photo(file: UploadFile):
+    contents = await file.read()
+    with open(file.filename, 'wb+') as f:
+        f.write(contents)
 
-# @router.get("/prompts/", response_model=list[prompt_schemas.Prompt])
-# def get_all_prompts(skip: int = 0,
-#                     limit: int = 100,
-#                     db: Session = Depends(get_db)):
-#     prompts = prompt_services.get_all_prompts(db, skip=skip, limit=limit)
-#     return prompts
+    return {"filename": file.filename}
 
-# @router.post("/prompts/", response_model=prompt_schemas.Prompt)
-# def create_prompt(prompt: prompt_schemas.PromptCreate,
-#                   user_id: str,
-#                   db: Session = Depends(get_db)):
-#     return prompt_services.create_prompt(db=db, prompt=prompt, user_id=user_id)
+
+@router.get('/read/{filename}')
+async def get_photo(filename: str):
+    if not os.path.exists(filename):
+        raise HTTPException(status_code=400,
+                            detail="File name does not exist!")
+    return FileResponse(filename)
+
+
+@router.get('/mood/{filename}')
+async def photo_mood(filename: str):
+    if not os.path.exists(filename):
+        raise HTTPException(status_code=400,
+                            detail="File name does not exist!")
+    return humes_services.process_image_hume(filename)
