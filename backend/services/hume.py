@@ -1,4 +1,4 @@
-from backend.config import get_settings
+from config import get_settings
 
 from hume import HumeBatchClient
 from hume.models.config import FaceConfig

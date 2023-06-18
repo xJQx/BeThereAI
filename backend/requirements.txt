@@ -3,3 +3,4 @@ uvicorn[standard]==0.22.0
 sqlalchemy==2.0.16
 yapf==0.40.0
 hume==0.3.3
+openai==0.27.8

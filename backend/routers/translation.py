@@ -1,6 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
 
-from backend.database import get_db
+from models.enum import TranslationLangEnum
 
-router = APIRouter(prefix="/translation")
+import services.openai as openai_services
+
+router = APIRouter(prefix="/translate")
+
+
+@router.post('/text')
+async def translate_text(text: str, lang: TranslationLangEnum):
+    return openai_services.translate(text, lang)

@@ -1,2 +1,2 @@
-from backend.models import user
-from backend.models import enum
+from models import user
+from models import enum

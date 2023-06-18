@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from backend.models.enum import TranslationLangEnum
+from models.enum import TranslationLangEnum
 
 
 class UserBase(BaseModel):
