@@ -1,7 +1,5 @@
 
 from sqlalchemy import Column, Integer, String, Enum
-from sqlalchemy.orm import relationship
-from sqlalchemy.orm import Mapped
 
 from database import Base
 from models.enum import TranslationLangEnum
@@ -12,16 +10,6 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True, unique=True)
     name = Column(String)
-
-
-class AppUser(User):
-    translation_lang = Column(Enum(TranslationLangEnum), default=TranslationLangEnum.ENGLISH)
-    
-    iot_users: Mapped[list["IOTUser"]] = relationship(back_populates="app_users")
-
-
-class IOTUser(User):
-    mood = Column(Integer, default=0)
-    live_location = Column(String)
-
-    app_users: Mapped[list["AppUser"]] = relationship(back_populates="iot_users")
+    translation_lang = Column(Enum(TranslationLangEnum), default=TranslationLangEnum.ENGLISH, nullable=True)
+    mood = Column(Integer, default=0, nullable=True)
+    live_location = Column(String, nullable=True)

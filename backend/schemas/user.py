@@ -7,19 +7,15 @@ class UserBase(BaseModel):
     name: str
 
 
+class UserCreate(UserBase):
+    pass
+
+
 class User(UserBase):
     id: int
+    translation_lang: TranslationLangEnum = TranslationLangEnum.ENGLISH
+    mood: int = 0
+    live_location: str = ''
 
     class Config:
         orm_mode = True
-
-
-class AppUser(User):
-    translation_lang: TranslationLangEnum
-    iot_users: 'list[IOTUser]' = []
-
-
-class IOTUser(User):
-    mood: int = 0
-    live_location: str
-    app_users: 'list[AppUser]' = []
