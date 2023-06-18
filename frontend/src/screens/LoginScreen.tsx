@@ -1,3 +1,4 @@
+import { InputText } from "components/InputText";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "states/AuthContextProvider";
@@ -24,19 +25,10 @@ export const LoginScreen = () => {
         <span>AI.</span>
       </div>
 
+      {/* Username and Password */}
       <div className="flex flex-col gap-[8px] mt-[28px] justify-center items-center max-w-[225px]">
-        {/* Username */}
-        <input
-          type="text"
-          placeholder="Username"
-          className="bg-white w-full px-[24px] py-[6px] text-brand-dark-blue font-semibold rounded-3xl placeholder-brand-dark-blue"
-        />
-        {/* Password */}
-        <input
-          type="password"
-          placeholder="Password"
-          className="bg-white w-full px-[24px] py-[6px] text-brand-dark-blue font-semibold rounded-3xl placeholder-brand-dark-blue"
-        />
+        <InputText type="text" placeholder="Username" />
+        <InputText type="password" placeholder="Password" />
       </div>
 
       {/* Login Button */}
