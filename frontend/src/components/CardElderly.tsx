@@ -1,6 +1,7 @@
 import React from "react";
 import { MoodEmoji, MoodType } from "./MoodEmoji";
 import { IoExpandOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 export interface CardElderlyProps {
   img: {
@@ -16,6 +17,8 @@ export interface CardElderlyProps {
 
 export const CardElderly = (props: CardElderlyProps) => {
   const { img, name, lastSeen, lastText, lastTextTime, mood } = props;
+
+  const navigate = useNavigate();
 
   return (
     <div className="relative bg-brand-light-blue min-h-[175px] w-full max-w-[150px] p-1 rounded-2xl">
@@ -38,7 +41,10 @@ export const CardElderly = (props: CardElderlyProps) => {
       <div className="absolute bottom-[42px] right-[10px] flex flex-col bg-white text-brand-blue text-[24px] p-[4px] rounded-full opacity-90">
         <MoodEmoji mood={mood} />
       </div>
-      <div className="absolute top-[8px] right-[8px] flex flex-col bg-white text-brand-blue text-[18px] p-[4px] rounded-full opacity-90">
+      <div
+        className="absolute top-[8px] right-[8px] flex flex-col bg-white text-brand-blue text-[18px] p-[4px] rounded-full opacity-90"
+        onClick={() => navigate("/messaging")}
+      >
         <IoExpandOutline />
       </div>
     </div>

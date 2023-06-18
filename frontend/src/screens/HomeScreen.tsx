@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "states/AuthContextProvider";
 import { ButtonSettings } from "components/ButtonSettings";
 import { CardElderly, CardElderlyProps } from "components/CardElderly";
-import { IoAdd, IoAddCircle } from "react-icons/io5";
+import { IoAdd } from "react-icons/io5";
 
 export const HomeScreen = () => {
   const authContext = useContext(AuthContext);

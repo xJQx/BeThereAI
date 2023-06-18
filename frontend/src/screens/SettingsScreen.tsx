@@ -11,5 +11,5 @@ export const SettingsScreen = () => {
     }
   }, []);
 
-  return <div>SettingsScreen</div>;
+  return <div>User Settings - Coming Soon...</div>;
 };
