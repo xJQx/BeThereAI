@@ -12,7 +12,7 @@ class UserCreate(UserBase):
 
 
 class User(UserBase):
-    id: int
+    id: int = None
     translation_lang: TranslationLangEnum = TranslationLangEnum.ENGLISH
     mood: int = 0
     live_location: str = ''

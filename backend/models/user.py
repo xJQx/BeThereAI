@@ -11,5 +11,5 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True, unique=True)
     name = Column(String)
     translation_lang = Column(Enum(TranslationLangEnum), default=TranslationLangEnum.ENGLISH, nullable=True)
-    mood = Column(Integer, default=0, nullable=True)
-    live_location = Column(String, nullable=True)
+    mood = Column(Integer, default=0)
+    live_location = Column(String, default='')
